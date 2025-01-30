@@ -14,6 +14,8 @@ def create_app():
     CORS(app)
     db.init_app(app)
     jwt.init_app(app)
+
+    from app.models import User, Ad, Message
  
     @app.route('/')
     def home():
