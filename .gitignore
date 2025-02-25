@@ -27,3 +27,6 @@ venv/
 __pycache__/
 *.pyc
 *.pyo
+
+# Ignore node modules
+node_modules/
