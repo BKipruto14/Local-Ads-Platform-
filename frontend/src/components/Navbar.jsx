@@ -30,6 +30,7 @@ const Navbar = () => {
             <li className="nav-item">
               <Link to="/" className="nav-link">Home</Link>
             </li>
+
             {!authToken ? (
               <>
                 <li className="nav-item">
@@ -38,24 +39,32 @@ const Navbar = () => {
                 <li className="nav-item">
                   <Link to="/register" className="nav-link">Register</Link>
                 </li>
-              </>
-            ) : (
-              <>
-                <li className="nav-item">
-                  <Link to="/profile" className="nav-link">Profile</Link>
-                </li>
-                <li className="nav-item">
-                  <button className="btn btn-danger ms-3" onClick={handleLogout}>
-                    Logout
-                  </button>
-                </li>
-              </>
+                </>
+                ) : (
+                <>
+                  <li className="nav-item">
+                    <Link to="/profile" className="nav-link">Profile</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/browse" className="nav-link">Browse Ads</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/create-ad" className="nav-link">Post Ad</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/my-ads" className="nav-link">My Ads</Link>
+                  </li>
+                  <li className="nav-item">
+                    <button className="btn btn-danger ms-3" onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </li>
+                </>
             )}
-          </ul>
+              </ul>
         </div>
       </div>
     </nav>
-  );
-};
-
+  )
+}
 export default Navbar;

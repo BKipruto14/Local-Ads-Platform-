@@ -31,6 +31,10 @@ def create_ad():
 @ad_routes.route("/view_ads", methods=["GET"])
 def get_ads():
     ads = Ad.query.all()
+    
+    if not ads: 
+        return jsonify({"message": "No ads available", "ads": []}), 200
+    # Serialize the ads
     ads_list = [
         {
             "id": ad.id,
@@ -45,7 +49,7 @@ def get_ads():
     return jsonify({"ads": ads_list}), 200
 
 #Edit ad
-@ad_routes.route("/<int:ad_id>", methods=["PUT"]) 
+@ad_routes.route("edit_ad/<int:ad_id>", methods=["PUT"]) 
 @jwt_required()
 def edit_ad(ad_id):
     user_id = get_jwt_identity()  # Get logged-in user ID
@@ -72,7 +76,7 @@ def edit_ad(ad_id):
     return jsonify({"message": "Ad updated successfully!"}), 200
 
 #Delete ad
-@ad_routes.route("/delete_ads", methods=["DELETE"])
+@ad_routes.route("/delete_ads/<int:ad_id>", methods=["DELETE"])
 @jwt_required()
 def delete_ad(ad_id):
     user_id = get_jwt_identity()  # Get logged-in user ID
